@@ -1,16 +1,58 @@
 openapi: 3.0.0
 info:
-  title: Express + MongoDB API CRUD - JWT Authentication with Refresh Tokens
+  title: Express + MongoDB API CRUD - JWT Authentication with Refresh Tokens + Booking API
   version: 1.0.0
 
 servers:
   - url: http://localhost:4000
     description: Local development server
+tags:
+  - name: booking
+    description: Booking data
+  - name: users
+    description: Users credentials and data
 
 paths:
+  /booking/cancelBooking:
+      post:
+        summary: Cancel booking
+        tags:
+          - booking
+        operationId: cancelBooking
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  booking_no:
+                    type: number
+                    example: 1
+                  booking_date:
+                    type: Date
+                    example: "2022-06-05T02:40:10.085Z"
+                required:
+                  - booking_no
+                  - booking_date
+        responses:
+          "200":
+            description: Booking Details of the canceled book and Money refunded
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    response:
+                      type: string
+                      example: "Booking canceled."
+          "401":
+            $ref: "#/components/responses/UnauthorizedError"
   /users/authenticate:
     post:
       summary: Authenticate user credentials and return a JWT token and a cookie with a refresh token
+      tags: 
+        - users
       description: Open to everyone.
       operationId: authenticate
       requestBody:
@@ -74,6 +116,8 @@ paths:
   /users/refresh-token:
     post:
       summary: Use a refresh token to generate a new JWT token and a new refresh token
+      tags: 
+        - users
       description: The refresh token is sent and returned via cookies.
       operationId: refreshToken
       parameters:
@@ -128,6 +172,8 @@ paths:
   /users/revoke-token:
     post:
       summary: Revoke a refresh token
+      tags: 
+        - users
       description: Admin users can revoke the tokens of any user, regular users can only revoke their own tokens.
       operationId: revokeToken
       security:
@@ -174,6 +220,8 @@ paths:
   /users/createUser:
     post:
       summary: Create user
+      tags: 
+        - users
       description: Open to everyone.
       operationId: createUser
       requestBody:
@@ -209,6 +257,8 @@ paths:
   /users/updateUser/{id}:
     put:
       summary: Update user by id
+      tags: 
+        - users
       description: Admin users can update any user record, regular users are restricted to their own user record.
       operationId: updateById
       requestBody:
@@ -255,6 +305,8 @@ paths:
           type: string
     post:
       summary: Delete user by id
+      tags: 
+        - users
       description: Admin users can delete any user record, regular users are restricted to their own user record.
       operationId: deleteById
       security:
@@ -273,6 +325,8 @@ paths:
   /users:
     get:
       summary: Get a list of all users
+      tags: 
+        - users
       description: Restricted to admin users.
       operationId: getAllUsers
       security:
@@ -315,6 +369,8 @@ paths:
           type: string
     get:
       summary: Get a single user by id
+      tags: 
+        - users
       description: Admin users can access any user record, regular users are restricted to their own user record.
       operationId: getUserById
       security:
@@ -357,6 +413,8 @@ paths:
           type: string
     get:
       summary: Get a list of all refresh tokens (active and revoked) of the user with the specified id
+      tags: 
+        - users
       description: Admin users can access any user's refresh tokens, regular users are restricted to their own refresh tokens.
       operationId: getRefreshTokens
       security:
