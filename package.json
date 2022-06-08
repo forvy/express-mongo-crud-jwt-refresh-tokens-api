@@ -1,7 +1,7 @@
 {
     "name": "express-mongo-crud-jwt-refresh-tokens-api",
     "version": "1.0.0",
-    "description": "Express + MongoDB API CRUD - JWT Authentication with Refresh Tokens",
+    "description": "Express + MongoDB API CRUD - JWT Authentication with Refresh Tokens + Booking API",
     "license": "MIT",
     "scripts": {
         "start": "node ./server.js",

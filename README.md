@@ -1,4 +1,4 @@
-# Express + MongoDB API CRUD - JWT Authentication with Refresh Tokens
+# Express + MongoDB API CRUD - JWT Authentication with Refresh Tokens + Booking API
 
 To start on localhost do `npm install`.
 

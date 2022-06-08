@@ -1,5 +1,5 @@
 ﻿{
-    "connectionString": "mongodb://mongo:27017/express-mongo-crud-jwt-refresh-tokens-api",
+    "connectionString": "mongodb://localhost/express-mongo-crud-jwt-refresh-tokens-api",
     "connectionStringDocker": "mongodb://mongo:27017/express-mongo-crud-jwt-refresh-tokens-api",
     "connectionStringLocal": "mongodb://localhost/express-mongo-crud-jwt-refresh-tokens-api",
     "secret": "y7nbInOMLEuwW4WKAtFQtA=="
